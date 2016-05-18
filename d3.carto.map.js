@@ -71,7 +71,7 @@ module.exports = {
 (function (global){
 "use strict";
 
-var d3 = (typeof window !== "undefined" ? window.d3 : typeof global !== "undefined" ? global.d3 : null);
+var d3 = (typeof window !== "undefined" ? window['d3'] : typeof global !== "undefined" ? global['d3'] : null);
 
 var Layer = module.exports = function() {
     var layerPath = "";
@@ -317,7 +317,7 @@ Layer.tile = function() {
 (function (global){
 "use strict";
 
-var d3 = (typeof window !== "undefined" ? window.d3 : typeof global !== "undefined" ? global.d3 : null),
+var d3 = (typeof window !== "undefined" ? window['d3'] : typeof global !== "undefined" ? global['d3'] : null),
     Layer = _dereq_("./layer"),
     Modal = _dereq_("./modal");
 
@@ -1736,7 +1736,11 @@ function manualZoom(zoomDirection) {
 		  appendedFeatures
 		  .append("path")
                   .attr("class", layerClass)
-                  .attr("d", d3MapPath)
+                  .attr("d", d3MapPath);
+
+        layerG.selectAll("path."+layerClass)
+            .data(features)
+            .attr("d", d3MapPath);
 		  
 		  layerG.selectAll("g")
 		  .data(features)
@@ -2395,7 +2399,7 @@ function manualZoom(zoomDirection) {
 (function (global){
 "use strict";
 
-var d3 = (typeof window !== "undefined" ? window.d3 : typeof global !== "undefined" ? global.d3 : null),
+var d3 = (typeof window !== "undefined" ? window['d3'] : typeof global !== "undefined" ? global['d3'] : null),
     Map = _dereq_("./map"),
     Layer = _dereq_("./layer");
 
@@ -2514,7 +2518,7 @@ var minimap = module.exports = function() {
 (function (global){
 "use strict";
 
-var d3 = (typeof window !== "undefined" ? window.d3 : typeof global !== "undefined" ? global.d3 : null),
+var d3 = (typeof window !== "undefined" ? window['d3'] : typeof global !== "undefined" ? global['d3'] : null),
     Map = _dereq_("./map"),
     Layer = _dereq_("./layer");
 

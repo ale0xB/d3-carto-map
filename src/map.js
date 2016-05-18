@@ -1419,7 +1419,11 @@ function manualZoom(zoomDirection) {
 		  appendedFeatures
 		  .append("path")
                   .attr("class", layerClass)
-                  .attr("d", d3MapPath)
+                  .attr("d", d3MapPath);
+
+        layerG.selectAll("path."+layerClass)
+            .data(features)
+            .attr("d", d3MapPath);
 		  
 		  layerG.selectAll("g")
 		  .data(features)
