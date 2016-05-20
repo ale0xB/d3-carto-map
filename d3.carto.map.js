@@ -1160,15 +1160,6 @@ function manualZoom(zoomDirection) {
 		    cartoLayer.g(layerG);
 		    
 		    updateLayer(cartoLayer);
-  
-		  
-	    if (cartoLayer.clickableFeatures()) {
-		d3MapSetModal(cartoLayer);
-		  }
-		  else {
-		    layerG.selectAll("g.marker")
-		    .style("pointer-events", "none");
-		  }
 
 		    }
 		    
@@ -1289,15 +1280,7 @@ function manualZoom(zoomDirection) {
 	pointsG.attr("transform", "translate(" + d3MapZoom.translate() + ")scale(" + d3MapZoom.scale() + ")");
   
 	    updateLayer(cartoLayer);
- 
-  
-  if (cartoLayer.clickableFeatures()) {
-	d3MapSetModal(cartoLayer);
-  }
-  else {
-    cartoLayer.g().selectAll("g.marker")
-    .style("pointer-events", "none");
-  }
+            updateModalOnLayer(cartoLayer);
 
         }
 
@@ -1668,6 +1651,16 @@ function manualZoom(zoomDirection) {
 	}
 
     }
+
+    function updateModalOnLayer(cartoLayer) {
+        if (cartoLayer.clickableFeatures()) {
+            d3MapSetModal(cartoLayer);
+        }
+        else {
+            cartoLayer.g().selectAll("g.marker")
+                .style("pointer-events", "none");
+        }
+    }
     
     function d3MapSetModal(cartoLayer) {
 	if (!cartoLayer.modal()) {
@@ -1717,6 +1710,8 @@ function manualZoom(zoomDirection) {
   .data(features)
   .exit()
   .remove();
+
+        updateModalOnLayer(cartoLayer);
   
   layerG.selectAll("g.pointG")
     .attr("transform", function(d) {return "translate(" + (d._d3Quad ? d3MapProjection([d._d3Quad.x,d._d3Quad.y]) : d3MapProjection([cartoLayer.x()(d),cartoLayer.y()(d)])) + ")"})
