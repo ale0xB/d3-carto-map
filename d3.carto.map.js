@@ -389,12 +389,12 @@ var Map = module.exports = function() {
     var d3MapZoom = d3.behavior.zoom();
     
     var tandemMapArray = [];
-    
+
     var tileTypes = {
-	stamen: {flatPath: "tile.stamen.com", flatType: "png", reprojectPathPrefix: "http://{subdomain}.tile.stamen.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
-	mapbox: {flatPath: "tiles.mapbox.com/v3", flatType: "png", reprojectPathPrefix: "http://{subdomain}.tiles.mapbox.com/v3/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
-    cartodb: {flatPath: "basemaps.cartocdn.com", flatType: "png", reprojectPathPrefix: "http://{subdomain}.basemaps.cartocdn.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"}
-    }
+	stamen: {flatPath: "tile.stamen.com", flatType: "png", reprojectPathPrefix: window.location.protocol + "//{subdomain}.tile.stamen.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
+	mapbox: {flatPath: "tiles.mapbox.com/v3", flatType: "png", reprojectPathPrefix: window.location.protocol +  "//{subdomain}.tiles.mapbox.com/v3/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
+    cartodb: {flatPath: "basemaps.cartocdn.com", flatType: "png", reprojectPathPrefix: window.location.protocol + "//{subdomain}.basemaps.cartocdn.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"}
+    };
 
     function map(selectedDiv) {
 
