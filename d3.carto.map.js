@@ -391,10 +391,10 @@ var Map = module.exports = function() {
     var tandemMapArray = [];
 
     var tileTypes = {
-	stamen: {flatPath: "tile.stamen.com", flatType: "png", reprojectPathPrefix: window.location.protocol + "//{subdomain}.tile.stamen.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
-	mapbox: {flatPath: "tiles.mapbox.com/v3", flatType: "png", reprojectPathPrefix: window.location.protocol +  "//{subdomain}.tiles.mapbox.com/v3/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
-    cartodb: {flatPath: "basemaps.cartocdn.com", flatType: "png", reprojectPathPrefix: window.location.protocol + "//{subdomain}.basemaps.cartocdn.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"}
-    };
+        stamen: {flatPath: "tile.stamen.com", flatType: "png", reprojectPathPrefix: "http://{subdomain}.tile.stamen.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
+        mapbox: {flatPath: "tiles.mapbox.com/v3", flatType: "png", reprojectPathPrefix: "http://{subdomain}.tiles.mapbox.com/v3/", reprojectPathSuffix: "/{z}/{x}/{y}.png"},
+        cartodb: {flatPath: "basemaps.cartocdn.com", flatType: "png", reprojectPathPrefix: "http://{subdomain}.basemaps.cartocdn.com/", reprojectPathSuffix: "/{z}/{x}/{y}.png"}
+    }
 
     function map(selectedDiv) {
 
@@ -965,7 +965,7 @@ var Map = module.exports = function() {
       .remove();
 
   image.enter().append("image")
-    .attr("xlink:href", function(d) { return window.location.protocol+ "//" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + "." + tileTypes[d3MapTileLayer[x].object().type].flatPath + "/"+d3MapTileLayer[x].object().path+"/" + d[2] + "/" + d[0] + "/" + d[1] + "." + tileTypes[d3MapTileLayer[x].object().type].flatType; })
+    .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + "." + tileTypes[d3MapTileLayer[x].object().type].flatPath + "/"+d3MapTileLayer[x].object().path+"/" + d[2] + "/" + d[0] + "/" + d[1] + "." + tileTypes[d3MapTileLayer[x].object().type].flatType; })
       .attr("width", 1)
       .attr("height", 1)
       .attr("x", function(d) { return d[0]; })
